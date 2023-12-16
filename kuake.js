@@ -5,7 +5,7 @@ const url = $request.url;
 const urlParams = new URLSearchParams(url);
 
 const videoUrl = urlParams.get("video_url");
-if (videoUrl && videoUrl.trim() !== "") {
+if (videoUrl !== "") {
   $done({response: {headers: {"video-url": videoUrl}}});
   $.subt = "获取会话: 成功!" + videoUrl;
   $clipboard.set(videoUrl);
