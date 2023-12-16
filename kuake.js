@@ -3,9 +3,9 @@ $.KEY_sign = 'quark';
 $.signKeyTU = 'quakr';
 const url = $request.url;
 const urlParams = new URLSearchParams(url); 
- const videoUrl = decodeURIComponent(urlParams.get("video_url")); 
+const videoUrl = decodeURIComponent(urlParams.get("video_url")); 
+$done({response: {headers: {"video-url": videoUrl}}});
 if (videoUrl !== "") {
-  $done({response: {headers: {"video-url": videoUrl}}});
   $.subt = "获取会话: 成功!" + videoUrl;
   $clipboard.set(videoUrl);
   $done();
