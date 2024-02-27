@@ -16,12 +16,12 @@ var actID = '';
 var playID = '';
 var sessionid = '';
 
+
 !(async() => {
     if (typeof $request != "undefined") {
         getToken();
         return;
     }
-
 })();
 
 function getToken() {
@@ -30,13 +30,13 @@ function getToken() {
         ENCRYPT = base64decode(ENCRYPT);
         let obj = {};
         let abc = {};
-        ENCRYPT.split('&').forEach(item => obj[item.split('=')[0]] = (item.split('=')[1]))
+        ENCRYPT.split('&').forEach(item => obj[item.split('=')[0]] = item.split('=')[1]);
         abc.userId = obj.userId;
         abc.adiu = obj.deviceId;
         abc.sessionid = obj.sessionId;
         if (abc.sessionid.length > 30) {
             $.setdata(JSON.stringify(abc), _key);
-            $.msg($.name, '从小程序获取签到sessionid成功🎉', $.toStr(abc));
+            $.msg($.name, '获取签到sessionid成功🎉', $.toStr(abc));
         }
     } else if ($request && $request.method != 'OPTIONS') { //WX、ALI、APP
         let abc = {};
@@ -54,7 +54,7 @@ function getToken() {
                 abc.sessionid = ck.split("sessionid=")[1].split(";")[0];
                 if (abc.sessionid.length > 30) {
                     $.setdata(JSON.stringify(abc), _key);
-                    $.msg($.name, '从Cookie中获取签到sessionid成功🎉', $.toStr(abc));
+                    $.msg($.name, '获取签到sessionid成功🎉', $.toStr(abc));
                 }
             }
         }
