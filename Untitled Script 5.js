@@ -3,6 +3,11 @@
 // icon-color: blue; icon-glyph: magic;
 
 const $ = new Env("高德地图签到");
+const _key = 'GD_Val';
+var gdVal = $.getdata(_key) || ($.isNode() ? process.env[_key] : '');
+$.is_debug = ($.isNode() ? process.env.IS_DEDUG : $.getdata('is_debug')) || 'false';//false-true
+const notify = $.isNode() ? require('./sendNotify') : '';
+var message = '';
 var node = '';
 var channel = '';
 var adiu = '';
