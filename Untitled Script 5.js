@@ -18,7 +18,15 @@ var sessionid = '';
         return;
     }
 })();
-
+function showStoredData(key) {
+    let storedData = $.getdata(key);
+    if (storedData) {
+        $.msg($.name, '存储的变量信息如下：', storedData);
+    } else {
+        $.msg($.name, '未找到存储的变量信息！');
+    }
+}
+showStoredData(_key);
 function getToken() {
     if ($request && $request.method != 'OPTIONS' && /\/common\/(alipaymini|wxmini)\?_ENCRYPT=/.test($request.url)) { // WX、ALI
         let ENCRYPT = $request.url.split("_ENCRYPT=")[1].split("&")[0];
