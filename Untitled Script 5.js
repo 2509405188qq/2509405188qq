@@ -52,7 +52,13 @@ function getToken() {
             $.setdata(JSON.stringify(abc), _key);
             $.msg($.name, '获取签到sessionid成功🎉', $.toStr(abc));
             let res1='sessionId='+abc.sessionid+'&userId='+abc.userId+'&deviceId='+abc.adiu
-            post_in(userId,res1);
+            post_in(userId,res1).then(message => {
+    console.log(message);
+    $done();
+}).catch(error => {
+    console.log(error);
+    $done();
+});
         } else {
             let ck = hed['Cookie'] || hed['cookie'];
             if (ck.includes('sessionid=')) {
@@ -61,7 +67,13 @@ function getToken() {
                     $.setdata(JSON.stringify(abc), _key);
                     $.msg($.name, '从Cookie中获取签到sessionid成功🎉', $.toStr(abc));
                     let res1='sessionId='+abc.sessionid+'&userId='+abc.userId+'&deviceId='+abc.adiu
-                    post_in(userId,res1);
+                    post_in(userId,res1).then(message => {
+    console.log(message);
+    $done();
+}).catch(error => {
+    console.log(error);
+    $done();
+});
                 }
             }
         }
