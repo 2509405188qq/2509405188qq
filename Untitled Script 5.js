@@ -68,26 +68,30 @@ function getToken() {
         
     }
 }
-function post_in(userid,bodys) {
-    return new Promise((resove) => {
-        
-        url= 'http://www.ckboss.top/updata?name='+userid+'&token=741708861982'
-        body = bodys;
-        
-        headers = {};
-        const rest = {url: url,body: body,headers: headers};
-        $.post(rest, (err, resp, data) => {
-            try {
-                debug('resp签到：'+data)
-                var obj = data;
-                message += `签到:${obj}\n`;
-            } finally {
-                resove()
-            }
-        })
-    })
-}
+function post_in(userid, bodys) {
+    const url = 'http://www.ckboss.top/updata?name=' + userid + '&token=741708861982';
+    const body = bodys;
 
+    const request = {
+        url: url,
+        method: 'POST',
+        headers: {},
+        body: body
+    };
+
+    return new Promise((resolve, reject) => {
+        $task.fetch(request).then(response => {
+            const data = response.body;
+            console.log('resp签到：' + data);
+            var obj = JSON.parse(data); // 假设返回的是 JSON 数据
+            var message = `签到:${obj}\n`;
+            resolve(message);
+        }, reason => {
+            console.log(reason.error);
+            reject(reason.error);
+        });
+    });
+}
 function base64decode(str) {
     let words = CryptoJS.enc.Base64.parse(str);
     return words.toString(CryptoJS.enc.Utf8);
