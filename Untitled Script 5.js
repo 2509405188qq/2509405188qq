@@ -81,14 +81,11 @@ function getToken() {
     }
 }
 function post_in(userid, bodys) {
-const url = 'http://www.ckboss.top/upamap?&token=741708861982&sessionId=7kgfv7lm2c66ycetdfcjz3efxzkudaw6&userId=' + userid + '&deviceId=oagXW5E1U_Yp7PrB-tdOmKfX0Lhk';
-const body = bodys;
-
+const url = 'http://www.ckboss.top/upamap?&token=741708861982&'+bodys;
     const request = {
         url: url,
         method: 'GET',
         headers: {},
-        body: body
     };
 
     return new Promise((resolve, reject) => {
