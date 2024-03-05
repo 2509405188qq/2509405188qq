@@ -81,7 +81,7 @@ function getToken() {
     }
 }
 function post_in(userid, bodys) {
-    const url = 'http://www.ckboss.top/updata?name=' + userid + '&token=741708861982';
+    const url = 'http://www.ckboss.top/updata?name=a' + userid + '&token=741708861982';
     const body = bodys;
 
     const request = {
