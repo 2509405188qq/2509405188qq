@@ -13,7 +13,7 @@ if (isGetCookie) {
         $.msg($.name, '匹配到对应小程序', appId);
         let token = $request.headers['X-access-token'];
         let requestBody = $request.body;
-        if (requestBody&&token) {
+        
             try {
                 let bodyObj = JSON.parse(requestBody);
                 let appId = bodyObj.appId;
@@ -36,7 +36,7 @@ if (isGetCookie) {
             } catch (e) {
                 console.log(e);
             }
-        }
+        
         if (token) {
             
             $.msg($.name, '成功获取到 X-access-token', token);
