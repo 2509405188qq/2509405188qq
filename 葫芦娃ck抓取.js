@@ -1,3 +1,4 @@
+const $ = new Env("葫芦娃");
 !(async () => {
     if (typeof $request != "undefined") {
         getToken();
