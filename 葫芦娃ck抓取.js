@@ -8,6 +8,7 @@ const $ = new Env("葫芦娃");
 
 function getToken() {
     if ($request && $request.method == 'POST' && $request.url === 'https://gw.huiqunchina.com/front-manager/api/get/channelId') {
+         $.msg($.name, '匹配到对应小程序', appId);
         let token = $request.headers['X-access-token'];
         let requestBody = $request.body;
         if (requestBody&&token) {
