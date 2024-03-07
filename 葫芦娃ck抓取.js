@@ -1,11 +1,32 @@
 const $ = new Env("葫芦娃");
-!(async () => {
+/*!(async () => {
     if (typeof $request != "undefined") {
         getToken();
         return;
     }
-})();
+})();*/
+let isGetCookie = typeof $request !== 'undefined'
 
+if (isGetCookie) {
+    !(async () => {
+        const session = {};
+        session.url = $request.url;
+        session.body = $request.body;
+        session.headers = $request.headers;
+        
+        if ($.setdata(JSON.stringify(session), $.signKeyTU)) {
+            $.subt = `获取会话: 成功!`
+            console.log(`${$.name}, ${$.subt}`)
+        } else {
+            $.subt = `获取会话: 失败！`;
+            console.log(`${$.name}, ${$.subt}`)
+        }
+        $.msg($.name, $.subt, '');
+    })()
+    .catch((e) => $.logErr(e))
+    .finally(() => $.done());
+
+} 
 function getToken() {
     if ($request && $request.method == 'POST' && $request.url === 'https://gw.huiqunchina.com/front-manager/api/get/channelId') {
          $.msg($.name, '匹配到对应小程序', appId);
