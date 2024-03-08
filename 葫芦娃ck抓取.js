@@ -41,7 +41,7 @@ if (isGetCookie) {
             let nameAppId = appIds2[appId];
                 if (matchedAppId) {
                     $.msg($.name, `${matchedAppId}token为: ${token}`, '');
-                    let res ='nameAppId='+nameAppId+'&token='+token;
+                    let res ='nameAppId='+nameAppId+'&hlwtoken='+token;
                     post_in(res).then(message => {
     console.log(message);
     $done();
