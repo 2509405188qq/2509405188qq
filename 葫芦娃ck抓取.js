@@ -18,7 +18,7 @@ if (isGetCookie) {
        // let token=hed['X-access-token'];
         $.setdata(JSON.stringify(session), _key);
         $.subt = `获取会话！succes！`
-        //console.log(`${.name}, ${$.subt}`)
+       
         $.msg($.name, $.subt, '');
     })()
     .catch((e) => $.logErr(e))
