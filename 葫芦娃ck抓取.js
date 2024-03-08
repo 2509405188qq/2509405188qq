@@ -12,13 +12,12 @@ if (isGetCookie) {
     !(async () => {
         const session = {};
         session.url = $request.url;
-        session.body = $request.body;
-        session.headers = $request.headers;
         let token= $request.headers['X-access-token'];
+        let Referer_url= $request.headers['Referer'];
         //let hed =JSON.parse( $request.headers);
        // let token=hed['X-access-token'];
-        $.setdata(JSON.stringify(session), _key);
-        $.subt = `获取会话！succes！${token}`
+        
+        $.subt = `获取会话！succes！${token}${Referer_url}`
         $.msg($.name, $.subt, '');
     })()
     .catch((e) => $.logErr(e))
@@ -26,15 +25,7 @@ if (isGetCookie) {
 
 }
 
-function showStoredData(key) {
-    let storedData = $.getdata(key);
-    if (storedData) {
-        storedData = JSON.parse(storedData); // 将存储的数据解析为对象
-        $.msg($.name, '存储的变量信息如下：', storedData.headers['X-access-token']);
-    } else {
-        $.msg($.name, '未找到存储的变量信息！');
-    }
-}
+
 function extractWXVariableFromReferer(referer) {
     let matchResult = referer.match(/com\/([^\/]+)/);
     if (matchResult && matchResult.length > 1) {
@@ -44,7 +35,7 @@ function extractWXVariableFromReferer(referer) {
         return '未找到匹配的变量';
     }
 }
-showStoredData(_key);
+
 /*function getToken() {
     if ($request && $request.method == 'POST' && $request.url === 'https://gw.huiqunchina.com/front-manager/api/get/channelId') {
          $.msg($.name, '匹配到对应小程序', appId);
