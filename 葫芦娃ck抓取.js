@@ -15,8 +15,8 @@ if (isGetCookie) {
         session.headers = $request.headers;
         let text =JSON.stringify(session);
         
-        $.subt = `获取会话！succes！${text}`
-        console.log(`${$.name}, ${$.subt}`)
+        $.subt = `获取会话！succes！${text.headers.X-access-token}`
+        console.log(`${.name}, ${$.subt}`)
         $.msg($.name, $.subt, '');
     })()
     .catch((e) => $.logErr(e))
