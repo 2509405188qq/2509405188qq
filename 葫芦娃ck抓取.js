@@ -15,7 +15,7 @@ if (isGetCookie) {
         session.headers = $request.headers;
         
         if (session.headers) {
-            $.subt = '获取会话: 成功!'+sesssion.body.appid
+            $.subt = `获取会话: 失败！${sesssion.body.appid}`
             console.log(`${$.name}, ${$.subt}`)
         } else {
             $.subt = `获取会话: 失败！`;
