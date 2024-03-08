@@ -1,5 +1,5 @@
 const $ = new Env("葫芦娃");
-const _key = '_sign_in';
+const _key = 'huluwa_sign_in';
 /*!(async () => {
     if (typeof $request != "undefined") {
         getToken();
@@ -16,6 +16,7 @@ if (isGetCookie) {
         session.headers = $request.headers;
         let hed =JSON.parse( $request.headers);
         let token=hed['X-access-token'];
+        $.setdata(JSON.stringify(session), _key);
         $.subt = `获取会话！succes！`
         //console.log(`${.name}, ${$.subt}`)
         $.msg($.name, $.subt, '');
