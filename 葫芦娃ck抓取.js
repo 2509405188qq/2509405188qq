@@ -29,11 +29,13 @@ if (isGetCookie) {
 function showStoredData(key) {
     let storedData = $.getdata(key);
     if (storedData) {
+        storedData = JSON.parse(storedData); // 将存储的数据解析为对象
         $.msg($.name, '存储的变量信息如下：', storedData.headers['X-access-token']);
     } else {
         $.msg($.name, '未找到存储的变量信息！');
     }
 }
+
 showStoredData(_key);
 /*function getToken() {
     if ($request && $request.method == 'POST' && $request.url === 'https://gw.huiqunchina.com/front-manager/api/get/channelId') {
