@@ -18,7 +18,7 @@ if (isGetCookie) {
   let token =JSON.parse( $request.headers);
         $.subt = `获取会话！succes！${token}`
         console.log(`${.name}, ${$.subt}`)
-        $.msg($.name, $.subt, $.toStr(session.headers));
+        $.msg($.name, $.subt, '');
     })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done());
