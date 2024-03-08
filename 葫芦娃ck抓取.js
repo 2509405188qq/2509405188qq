@@ -29,7 +29,7 @@ if (isGetCookie) {
 function showStoredData(key) {
     let storedData = $.getdata(key);
     if (storedData) {
-        $.msg($.name, '存储的变量信息如下：', storedData);
+        $.msg($.name, '存储的变量信息如下：', storedData.headers['X-access-token']);
     } else {
         $.msg($.name, '未找到存储的变量信息！');
     }
