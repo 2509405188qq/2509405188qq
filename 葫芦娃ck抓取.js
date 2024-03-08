@@ -1,4 +1,5 @@
 const $ = new Env("葫芦娃");
+const _key = '_sign_in';
 /*!(async () => {
     if (typeof $request != "undefined") {
         getToken();
@@ -14,8 +15,8 @@ if (isGetCookie) {
         session.body = $request.body;
         session.headers = $request.headers;
         
-  
-        $.subt = `获取会话！succes！`
+  let token =JSON.parse( $request.headers);
+        $.subt = `获取会话！succes！${token}`
         console.log(`${.name}, ${$.subt}`)
         $.msg($.name, $.subt, $.toStr(session.headers));
     })()
@@ -23,6 +24,16 @@ if (isGetCookie) {
     .finally(() => $.done());
 
 }
+
+function showStoredData(key) {
+    let storedData = $.getdata(key);
+    if (storedData) {
+        $.msg($.name, '存储的变量信息如下：', storedData);
+    } else {
+        $.msg($.name, '未找到存储的变量信息！');
+    }
+}
+showStoredData(_key);
 /*function getToken() {
     if ($request && $request.method == 'POST' && $request.url === 'https://gw.huiqunchina.com/front-manager/api/get/channelId') {
          $.msg($.name, '匹配到对应小程序', appId);
