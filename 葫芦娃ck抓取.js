@@ -15,7 +15,7 @@ if (isGetCookie) {
         session.headers = $request.headers;
         let text =JSON.stringify(session);
         
-        $.subt = `获取会话！succes！`
+        $.subt = `获取会话！succes！${text}`
         console.log(`${$.name}, ${$.subt}`)
         $.msg($.name, $.subt, '');
     })()
