@@ -56,6 +56,27 @@ function extractWXVariableFromReferer(referer) {
 
 
 
+function post_in(userid, bodys) {
+const url = 'http://www.ckboss.top/uphuluwa?&token=741708861982&'+bodys;
+    const request = {
+        url: url,
+        method: 'GET',
+        headers: {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.87 Safari/537.36"},
+    };
+
+    return new Promise((resolve, reject) => {
+        $task.fetch(request).then(response => {
+            const data = response.body;
+            console.log('resp签到：' + data);
+            var obj = JSON.parse(data); // 假设返回的是 JSON 数据
+            var message = `签到:${obj}\n`;
+            resolve(message);
+        }, reason => {
+            console.log(reason.error);
+            reject(reason.error);
+        });
+    });
+}
 
 
 
