@@ -11,14 +11,30 @@ let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
     !(async () => {
         const session = {};
+        const appIds = {
+                    'wxded2e7e6d60ac09d': '新联惠购',
+                    'wx61549642d715f361': '贵旅优品',
+                    'wx613ba8ea6a002aa8': '空港乐购',
+                    'wx936aa5357931e226': '航旅黔购',
+                    'wx624149b74233c99a': '遵航出山',
+                    'wx5508e31ffe9366b8': '贵盐黔品',
+                    'wx821fb4d8604ed4d6': '乐旅商城',
+                    'wxee0ce83ab4b26f9c': '驿路黔寻'
+                };
         session.url = $request.url;
         let token= $request.headers['X-access-token'];
         let Referer_url= $request.headers['Referer'];
-        //let hed =JSON.parse( $request.headers);
-       // let token=hed['X-access-token'];
-        
+        if(Referer_url&&token){
+            let appId = extractWXVariableFromReferer(Referer_url)
+            let matchedAppId = appIds[appId];
+                if (matchedAppId) {
+                    $.msg($.name, `${matchedAppId}token为: ${token}`, appId);
+                } else {
+                    $.msg($.name, '未匹配到对应小程序', appId);
+                }
         $.subt = `获取会话！succes！${token}${Referer_url}`
         $.msg($.name, $.subt, '');
+        }
     })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done());
