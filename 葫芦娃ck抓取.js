@@ -14,13 +14,9 @@ if (isGetCookie) {
         session.body = $request.body;
         session.headers = $request.headers;
         
-        if (session.headers) {
-            $.subt = `获取会话: 失败！${sesssion.body.appid}`
-            console.log(`${$.name}, ${$.subt}`)
-        } else {
-            $.subt = `获取会话: 失败！`;
-            console.log(`${$.name}, ${$.subt}`)
-        }
+        
+        $.subt = `获取会话！${sesssion.body}`
+        console.log(`${$.name}, ${$.subt}`)
         $.msg($.name, $.subt, '');
     })()
     .catch((e) => $.logErr(e))
