@@ -52,43 +52,7 @@ function extractWXVariableFromReferer(referer) {
     }
 }
 
-/*function getToken() {
-    if ($request && $request.method == 'POST' && $request.url === 'https://gw.huiqunchina.com/front-manager/api/get/channelId') {
-         $.msg($.name, '匹配到对应小程序', appId);
-        let token = $request.headers['X-access-token'];
-        let requestBody = $request.body;
-        if (requestBody&&token) {
-            try {
-                let bodyObj = JSON.parse(requestBody);
-                let appId = bodyObj.appId;
-                const appIds = {
-                    'wxded2e7e6d60ac09d': '新联惠购',
-                    'wx61549642d715f361': '贵旅优品',
-                    'wx613ba8ea6a002aa8': '空港乐购',
-                    'wx936aa5357931e226': '航旅黔购',
-                    'wx624149b74233c99a': '遵航出山',
-                    'wx5508e31ffe9366b8': '贵盐黔品',
-                    'wx821fb4d8604ed4d6': '乐旅商城',
-                    'wxee0ce83ab4b26f9c': '驿路黔寻'
-                };
-                let matchedAppId = appIds[appId];
-                if (matchedAppId) {
-                    $.msg($.name, `${matchedAppId}token为: ${token}`, appId);
-                } else {
-                    $.msg($.name, '未匹配到对应小程序', appId);
-                }
-            } catch (e) {
-                console.log(e);
-            }
-        }
-        if (token) {
-            
-            $.msg($.name, '成功获取到 X-access-token', token);
-        }
 
-       
-    }
-}*/
 
 
 
